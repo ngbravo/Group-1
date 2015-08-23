@@ -1,3 +1,20 @@
+function cat() {
+    var head = _.first(arguments);
+    if (existy(head))
+        return head.concat.apply(head, _.rest(arguments));
+    else
+        return [];
+}
+
+function note(thing) {
+    console.log(["NOTE:", thing].join(' '));
+}
+
+function construct(head, tail) {
+    return cat([head], _.toArray(tail));
+}
+
+
 function actions(acts, done) {
     return function (seed) {
         var init = { values: [], state: seed };
