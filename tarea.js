@@ -1,19 +1,27 @@
-function pipeline(seed /*, args */) {
-    return _.reduce(_.rest(arguments),
-        function(l,r) { return r(l); }
-        ,seed);
-}
+function actions(acts, done) {
+    return function (seed) {
+        var init = { values: [], state: seed };
 
-function fifth(a) { return pipeline(a
-    , _.rest
-    , _.rest
-    , _.rest
-    , _.rest
-    , _.first);
-}
+        var intermediate = _.reduce(acts, function (stateObj, action) {
+            var result = action(stateObj.state);
+            var values = cat(stateObj.values, [result.answer]);
+            return { values: values, state: result.state };
+        }, init);
 
-function negativeFifth(a) { return pipeline(a
-    , fifth
-    , function(n) { return -n }); }
-var value = negativeFifth([1,2,3,4,5,6,7,8,9]); //=> -5
-console.log(value);
+        var keep = _.filter(intermediate.values, existy);
+        return done(keep, intermediate.state);
+    };
+};
+
+
+function lift(answerFun, stateFun) {
+    return function(/* args */) {
+        var args = _.toArray(arguments);
+        return function(state) {
+            var ans = answerFun.apply(null, construct(state, args));
+            var s = stateFun ? stateFun(state) : ans;
+
+            return {answer: ans, state: s};
+        };
+    };
+};
