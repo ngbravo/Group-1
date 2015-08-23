@@ -50,7 +50,6 @@ function modifyImage(image, actionFilters){
 
     filters(image);
 }
-modifyImage('#image-id', [{'filter':'sepia','quantity':100},{'filter':'contrast','quantity':100},{'filter':'brightness','quantity':10}]);
 
 /*var mSqr2 = lift(sqr);
 var mNote2 = lift(note, _.identity);
