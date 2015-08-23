@@ -46,3 +46,13 @@ function lift(answerFun, stateFun) {
 function existy(x) { 
     return x != null 
 };
+
+var zero = validator("cannot be zero", function(n) { 
+    return 0 === n 
+});
+var number = validator("arg must be a number", _.isNumber);
+function sqr(n) {
+    if (!number(n)) throw new Error(number.message);
+    if (zero(n)) throw new Error(zero.message);
+    return n * n;
+}
