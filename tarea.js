@@ -14,7 +14,7 @@ console.log("final: " + leNumeroNegativo);
 //=> -10000
 
 // Elegir imagen a poner en HTML
-// Definir filtros, intenidad y orden
+// Definir filtros, intensidad y orden
 // Definir function para texto
 // Hacer veriones lift de lo anterior
 // Version lift de sleep y render combinado
