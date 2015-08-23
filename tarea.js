@@ -9,5 +9,14 @@ var negativeSqrAction2 = actions([mSqr2(), mNote2(), mNeg2()], function(_, state
     return state;
 });
 
-negativeSqrAction2(100); // NOTE: 10000
+var leNumeroNegativo = negativeSqrAction2(100); // NOTE: 10000
+console.log("final: " + leNumeroNegativo);
 //=> -10000
+
+// Elegir imagen a poner en HTML
+// Definir filtros, intenidad y orden
+// Definir function para texto
+// Hacer veriones lift de lo anterior
+// Version lift de sleep y render combinado
+// Crear la acción
+// Ejecutar según el input
