@@ -42,3 +42,7 @@ function lift(answerFun, stateFun) {
         };
     };
 };
+
+function existy(x) { 
+    return x != null 
+};
