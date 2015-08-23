@@ -56,3 +56,11 @@ function sqr(n) {
     if (zero(n)) throw new Error(zero.message);
     return n * n;
 }
+
+function validator(message, fun) {
+    var f = function(/* args */) {
+        return fun.apply(fun, arguments);
+    };
+    f['message'] = message;
+    return f;
+}
