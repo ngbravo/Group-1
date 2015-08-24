@@ -33,7 +33,6 @@ $( document ).ready(function() {
 
         });
         modifyImage(filtersArray);
-
         //modifyImage('#image-id', [{'filter':'noise','quantity':100},{'filter':'brightness','quantity':-100},{'filter':'brightness','quantity':-100}]);
     });
 
