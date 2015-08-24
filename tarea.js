@@ -35,7 +35,7 @@ function filterFactory(type, quantity){
 }
 
 function sleep() {
-    alert("Pausa");
+    console.log("Pausa");
 }
 
 function modifyImage(actionFilters){
