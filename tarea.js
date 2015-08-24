@@ -1,74 +1,56 @@
-var mInitialize = function(imageId){
-    Caman(imageId, 'image.png', function(){
-        this.render();
-    });
-    return imageId;
-}
+var canvas;
+var imgInstance;
+$(document).ready(function(){
+    canvas = new fabric.StaticCanvas('image');
+    var imgElement = document.getElementById('image-id');
+    imgInstance = new fabric.Image(imgElement);
+    canvas.add(imgInstance);
+
+});
 
 function filterFactory(type, quantity){
-    return function(imageId){
-        Caman(imageId, function () {
-            if(type === 'sepia'){
-                this.sepia(quantity);
-            }
-            else if(type === 'brightness'){
-                this.brightness(quantity);
-            }
-            else if(type === 'contrast') {
-                this.contrast(quantity);
-            }
-            else if(type === 'noise'){
-                this.noise(quantity)
-            }
-
-            this.render();
-        });
+    return function(imageOb){
+        if(type === 'invert'){
+            imageOb.image.filters.push(new fabric.Image.filters.Invert());
+        }
+        else if(type === 'noise'){
+            imageOb.image.filters.push(new fabric.Image.filters.Noise({noise:quantity}));
+        }
+        else if(type === 'brightness'){
+            imageOb.image.filters.push(new fabric.Image.filters.Brightness({brightness:quantity}));
+        }
+        imageOb.image.applyFilters(imageOb.canvas.renderAll.bind(imageOb.canvas));
         console.log("type: " + type + ", q: " + quantity);
-        return imageId;
+        return imageOb;
     }
 }
 
 function sleep() {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > 5000){
-            break;
-        }
-    }
+    alert("Pausa");
 }
 
 function modifyImage(image, actionFilters){
-    var mSleep = lift(sleep, _.identity);
-
-    mInitialize(image);
-    var actionsArray = new Array(actionFilters.length*2);
-    for(var i = 0; i < actionFilters.length; i+=2){
-        var action = actionFilters[i];
-        var filter = filterFactory(action.filter, action.quantity);
-        var liftedFilter = lift(filter);
-        actionsArray[i] = liftedFilter();
-        actionsArray[i+1] = mSleep();
-    }
+    actionsArray = [lift(filterFactory('brightness',100))(),lift(sleep, _.identity)(),lift(filterFactory('noise',100))(),lift(sleep, _.identity)()];
 
     var filters = actions(actionsArray, function(_, state) {
         return state;
     });
 
-    filters(image);
+    filters({image:imgInstance,canvas:canvas});
 }
 
 
 /*var mSqr2 = lift(sqr);
-var mNote2 = lift(note, _.identity);
-var mNeg2 = lift(function(n) { return -n });
+ var mNote2 = lift(note, _.identity);
+ var mNeg2 = lift(function(n) { return -n });
 
 
-var negativeSqrAction2 = actions([mSqr2(), mNote2(), mNeg2()], function(_, state) {
-    return state;
-});
+ var negativeSqrAction2 = actions([mSqr2(), mNote2(), mNeg2()], function(_, state) {
+ return state;
+ });
 
-var leNumeroNegativo = negativeSqrAction2(100); // NOTE: 10000
-console.log("final: " + leNumeroNegativo);*/
+ var leNumeroNegativo = negativeSqrAction2(100); // NOTE: 10000
+ console.log("final: " + leNumeroNegativo);*/
 //=> -10000
 
 // Elegir imagen a poner en HTML

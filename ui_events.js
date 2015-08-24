@@ -14,7 +14,7 @@ $( document ).ready(function() {
     });
 
     $("#button").click(function(){
-        modifyImage('#image-id', [{'filter':'sepia','quantity':100},{'filter':'brightness','quantity':-10},{'filter':'brightness','quantity':10}]);
+        modifyImage('#image-id', [{'filter':'noise','quantity':50},{'filter':'sepia','quantity':-100}]);
     });
 
 });
