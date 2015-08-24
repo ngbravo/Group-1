@@ -14,8 +14,13 @@ function filterFactory(type, quantity){
             else if(type === 'brightness'){
                 this.brightness(quantity);
             }
-            else if(type === 'contrast')
+            else if(type === 'contrast') {
                 this.contrast(quantity);
+            }
+            else if(type === 'noise'){
+                this.noise(quantity)
+            }
+
             this.render();
         });
         console.log("type: " + type + ", q: " + quantity);
@@ -51,6 +56,7 @@ function modifyImage(image, actionFilters){
 
     filters(image);
 }
+
 
 /*var mSqr2 = lift(sqr);
 var mNote2 = lift(note, _.identity);
