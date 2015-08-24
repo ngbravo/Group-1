@@ -32,9 +32,9 @@ $( document ).ready(function() {
             filtersArray.push({'filter': type, 'quantity': quantity});
 
         });
-        //modifyImage('#image-id', filtersArray);
+        modifyImage(filtersArray);
 
-        modifyImage('#image-id', [{'filter':'noise','quantity':100},{'filter':'brightness','quantity':-100},{'filter':'brightness','quantity':-100}]);
+        //modifyImage('#image-id', [{'filter':'noise','quantity':100},{'filter':'brightness','quantity':-100},{'filter':'brightness','quantity':-100}]);
     });
 
 });

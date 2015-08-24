@@ -29,8 +29,18 @@ function sleep() {
     alert("Pausa");
 }
 
-function modifyImage(image, actionFilters){
-    actionsArray = [lift(filterFactory('brightness',100))(),lift(sleep, _.identity)(),lift(filterFactory('noise',100))(),lift(sleep, _.identity)()];
+function modifyImage(actionFilters){
+    actionsArray = new Array(actionFilters.length*2);
+    var j =0;
+    for(var i = 0; i < actionFilters.length*2-1; i+=2){
+        var action = actionFilters[j];
+        var filter = filterFactory(action.filter, action.quantity);
+        var liftedFilter = lift(filter);
+        actionsArray[i] = liftedFilter();
+        actionsArray[i+1] = lift(sleep, _.identity)();
+        j++;
+    }
+    //actionsArray = [lift(filterFactory('brightness',100))(),lift(sleep, _.identity)(),lift(filterFactory('noise',100))(),lift(sleep, _.identity)()];
 
     var filters = actions(actionsArray, function(_, state) {
         return state;
