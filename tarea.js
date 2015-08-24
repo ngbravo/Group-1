@@ -14,8 +14,13 @@ function filterFactory(type, quantity){
             else if(type === 'brightness'){
                 this.brightness(quantity);
             }
-            else if(type === 'contrast')
+            else if(type === 'contrast') {
                 this.contrast(quantity);
+            }
+            else if(type === 'noise'){
+                this.noise(quantity)
+            }
+
             this.render();
         });
         return imageId;
@@ -50,7 +55,7 @@ function modifyImage(image, actionFilters){
 
     filters(image);
 }
-modifyImage('#image-id', [{'filter':'sepia','quantity':100},{'filter':'contrast','quantity':100},{'filter':'brightness','quantity':10}]);
+modifyImage('#image-id', [{'filter':'noise','quantity':100}]);
 
 /*var mSqr2 = lift(sqr);
 var mNote2 = lift(note, _.identity);
