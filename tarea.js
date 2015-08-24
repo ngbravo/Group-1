@@ -13,6 +13,12 @@ function filterFactory(type, quantity){
         if(type === 'invert'){
             imageOb.image.filters.push(new fabric.Image.filters.Invert());
         }
+        else if(type === 'sepia') {
+            imageOb.image.filters.push(new fabric.Image.filters.Sepia);
+        }
+        else if(type === 'grayscale') {
+            imageOb.image.filters.push(new fabric.Image.filters.Grayscale);
+        }
         else if(type === 'noise'){
             imageOb.image.filters.push(new fabric.Image.filters.Noise({noise:quantity}));
         }
