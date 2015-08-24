@@ -55,7 +55,7 @@ function modifyImage(image, actionFilters){
 
     filters(image);
 }
-modifyImage('#image-id', [{'filter':'noise','quantity':100}]);
+
 
 /*var mSqr2 = lift(sqr);
 var mNote2 = lift(note, _.identity);

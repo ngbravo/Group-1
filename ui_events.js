@@ -13,4 +13,8 @@ $( document ).ready(function() {
 
     });
 
+    $("#button").click(function(){
+        modifyImage('#image-id', [{'filter':'sepia','quantity':100},{'filter':'brightness','quantity':-10},{'filter':'brightness','quantity':10}]);
+    });
+
 });
