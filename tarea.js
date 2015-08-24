@@ -23,18 +23,19 @@ function filterFactory(type, quantity){
 
             this.render();
         });
-        console.log("type: " + type + ", q: " + quantity);
         return imageId;
     }
 }
 
 function sleep() {
+    console.log("sleeeeep");
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
         if ((new Date().getTime() - start) > 5000){
             break;
         }
     }
+    console.log("end sleep");
 }
 
 function modifyImage(image, actionFilters){
