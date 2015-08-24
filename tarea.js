@@ -18,6 +18,7 @@ function filterFactory(type, quantity){
                 this.contrast(quantity);
             this.render();
         });
+        console.log("type: " + type + ", q: " + quantity);
         return imageId;
     }
 }
