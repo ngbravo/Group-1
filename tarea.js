@@ -22,6 +22,9 @@ function filterFactory(type, quantity){
         else if(type === 'noise'){
             imageOb.image.filters.push(new fabric.Image.filters.Noise({noise:quantity}));
         }
+        else if(type === 'pixelate'){
+            imageOb.image.filters.push(new fabric.Image.filters.Pixelate({pixelate:quantity}));
+        }
         else if(type === 'brightness'){
             imageOb.image.filters.push(new fabric.Image.filters.Brightness({brightness:quantity}));
         }
