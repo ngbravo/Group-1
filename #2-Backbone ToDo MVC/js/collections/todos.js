@@ -29,11 +29,22 @@ var app = app || {};
 		// We keep the Todos in sequential order, despite being saved by unordered
 		// GUID in the database. This generates the next order number for new items.
 		nextOrder: function () {
+			//TODO: asignar el mayor order +1
 			return this.length ? this.last().get('order') + 1 : 1;
 		},
 
 		// Todos are sorted by their original insertion order.
-		comparator: 'order'
+		comparator: function (todoItem){
+			if(this.sortListBy === 'order'){
+				return 'order';
+			}
+			else {
+				var priorities = {now: 1, soon: 2, later: 3, someday: 4};
+				return priorities[todoItem.get('priority')];
+			}
+		},
+
+		sortListBy: 'order'
 	});
 
 	// Create our global collection of **Todos**.

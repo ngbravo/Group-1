@@ -21,7 +21,8 @@ var app = app || {};
 		events: {
 			'keypress .new-todo': 'createOnEnter',
 			'click .clear-completed': 'clearCompleted',
-			'click .toggle-all': 'toggleAllComplete'
+			'click .toggle-all': 'toggleAllComplete',
+			'change #orderByPriority': 'orderList'
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -34,6 +35,7 @@ var app = app || {};
 			this.$main = this.$('.main');
 			this.$list = $('.todo-list');
 			this.$priorityInput = this.$('.priority-input');
+			this.$orderByPriority = this.$('#orderByPriority');
 
 			this.listenTo(app.todos, 'add', this.addOne);
 			this.listenTo(app.todos, 'reset', this.addAll);
@@ -128,6 +130,17 @@ var app = app || {};
 					completed: completed
 				});
 			});
+		},
+
+		orderList: function () {
+			if(this.$orderByPriority.is(':checked')){
+				app.todos.sortListBy = 'priority';
+			}
+			else {
+				app.todos.sortListBy = 'order';
+			}
+			//order
+			app.todos.sort();
 		}
 	});
 })(jQuery);
