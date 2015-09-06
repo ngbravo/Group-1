@@ -42,13 +42,13 @@ var app = app || {};
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', _.debounce(this.render, 0));
+			this.listenTo(app.todos, 'sort', this.reloadList);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
 			app.todos.fetch({reset: true});
 		},
-
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
@@ -141,6 +141,11 @@ var app = app || {};
 			}
 			//order
 			app.todos.sort();
+		},
+
+		reloadList: function () {
+			this.addAll();
 		}
+
 	});
 })(jQuery);

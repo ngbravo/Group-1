@@ -43,7 +43,7 @@ var app = app || {};
 		// Todos are sorted by their original insertion order.
 		comparator: function (todoItem){
 			if(this.sortListBy === 'order'){
-				return 'order';
+				return todoItem.get('order');
 			}
 			else {
 				var priorities = {now: 1, soon: 2, later: 3, someday: 4};
