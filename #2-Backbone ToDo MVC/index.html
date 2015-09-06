@@ -10,7 +10,14 @@
 		<section class="todoapp">
 			<header class="header">
 				<h1>todos</h1>
+				<input id="orderByPriority" type="checkbox" name="option1" value="byPriority">Order By Priority<br>
 				<input class="new-todo" placeholder="What needs to be done?" autofocus>
+				<select class="priority-input">
+					<option value='now'>Now</option>
+					<option value='soon'>Soon</option>
+					<option value='later'>Later</option>
+					<option value='someday'>Someday</option>
+				</select>
 			</header>
 			<section class="main">
 				<input class="toggle-all" type="checkbox">
@@ -31,6 +38,12 @@
 				<button class="destroy"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
+			<select class="priority-input-edit">
+				<option value='now' <%= priority === 'now'? selected='selected':''%>>Now</option>
+				<option value='soon' <%= priority === 'soon'? selected='selected':''%>>Soon</option>
+				<option value='later' <%= priority === 'later'? selected='selected':''%>>Later</option>
+				<option value='someday' <%= priority === 'someday'? selected='selected':''%>>Someday</option>
+			</select>
 		</script>
 		<script type="text/template" id="stats-template">
 			<span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
@@ -43,6 +56,19 @@
 				</li>
 				<li>
 					<a href="#/completed">Completed</a>
+				</li>
+			<br>
+				<li>
+					<a href="#/now">Now</a>
+				</li>
+				<li>
+					<a href="#/soon">Soon</a>
+				</li>
+				<li>
+					<a href="#/later">Later</a>
+				</li>
+				<li>
+					<a href="#/someday">Someday</a>
 				</li>
 			</ul>
 			<% if (completed) { %>

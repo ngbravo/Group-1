@@ -21,7 +21,8 @@ var app = app || {};
 		events: {
 			'keypress .new-todo': 'createOnEnter',
 			'click .clear-completed': 'clearCompleted',
-			'click .toggle-all': 'toggleAllComplete'
+			'click .toggle-all': 'toggleAllComplete',
+			'change #orderByPriority': 'orderList'
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -33,19 +34,21 @@ var app = app || {};
 			this.$footer = this.$('.footer');
 			this.$main = this.$('.main');
 			this.$list = $('.todo-list');
+			this.$priorityInput = this.$('.priority-input');
+			this.$orderByPriority = this.$('#orderByPriority');
 
 			this.listenTo(app.todos, 'add', this.addOne);
 			this.listenTo(app.todos, 'reset', this.addAll);
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', _.debounce(this.render, 0));
+			this.listenTo(app.todos, 'sort', this.reloadList);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
 			app.todos.fetch({reset: true});
 		},
-
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
@@ -99,7 +102,8 @@ var app = app || {};
 			return {
 				title: this.$input.val().trim(),
 				order: app.todos.nextOrder(),
-				completed: false
+				completed: false,
+				priority: this.$priorityInput.val()
 			};
 		},
 
@@ -126,6 +130,22 @@ var app = app || {};
 					completed: completed
 				});
 			});
+		},
+
+		orderList: function () {
+			if(this.$orderByPriority.is(':checked')){
+				app.todos.sortListBy = 'priority';
+			}
+			else {
+				app.todos.sortListBy = 'order';
+			}
+			//order
+			app.todos.sort();
+		},
+
+		reloadList: function () {
+			this.addAll();
 		}
+
 	});
 })(jQuery);
