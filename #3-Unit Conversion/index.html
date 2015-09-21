@@ -26,8 +26,7 @@
         ng-change="conversion.updateConvertedUnitValue()"></select>
       </div>
 
-
-      <div class="col-md-3">
+      <div class="col-md-4">
         Select initial unit
         </br>
         <select ng-model="conversion.currentUnit"
@@ -35,25 +34,21 @@
         ng-change="conversion.updateConvertedUnitValue()"></select>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-4">
         Initial unit value
         </br>
         <input ng-model="conversion.currentUnitValue" type="number" class="form-control"
         ng-change="conversion.updateConvertedUnitValue()">
       </div>
 
-      <div class="col-md-3">
-        Select target unit
-        </br>
-        <select ng-model="conversion.convertedUnit"
-        ng-options="unit as unit.name for unit in conversion.selectedCategory.units"
-        ng-change="conversion.updateConvertedUnitValue()"></select>
-      </div>
-
-      <div class="col-md-3">
+      <div class="col-md-4">
         Output
         </br>
-        {{conversion.convertedUnitValue}}
+        <ul>
+          <li ng-repeat="unit in conversion.convertedUnitValues" ng-if="conversion.convertedUnitValues !== 'N/A'">
+            <strong>{{unit.name}}:</strong> {{unit.value}}
+          </li>
+        </ul>
       </div>
 
 
