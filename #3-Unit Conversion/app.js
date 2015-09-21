@@ -16,7 +16,7 @@ app.controller('ConversionController', function(){
       var results = [];
       for(var i = 0; i < this.selectedCategory.units.length; i++){
         var unit = this.selectedCategory.units[i];
-        var convertedValue = toBase * unit.conversionSlope + unit.conversionOffset;
+        var convertedValue = (toBase - unit.conversionOffset) / unit.conversionSlope;
         results.push({name: unit.name, value: convertedValue});
       }
       this.convertedUnitValues = results;
@@ -40,7 +40,31 @@ var unitCategories = [
       {
         name: "kilometer",
         isBaseUnit: false,
-        conversionSlope: 0.001, //meter = kilometer * conversionSlope + conversionOffset
+        conversionSlope: 1000, //base * conversionSlope + conversionOffset = newUnit
+        conversionOffset: 0
+      },
+      {
+        name: "yard",
+        isBaseUnit: false,
+        conversionSlope: 0.9144,
+        conversionOffset: 0
+      },
+      {
+        name: "inch",
+        isBaseUnit: false,
+        conversionSlope: 0.0254,
+        conversionOffset: 0
+      },
+      {
+        name: "feet",
+        isBaseUnit: false,
+        conversionSlope: 0.3048,
+        conversionOffset: 0
+      },
+      {
+        name: "mile",
+        isBaseUnit: false,
+        conversionSlope: 1609.344,
         conversionOffset: 0
       }
     ]
