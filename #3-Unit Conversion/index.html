@@ -15,6 +15,48 @@
   </head>
   <body>
     <!-- HTML body -->
-    hola {{1+2}}
+    <div class="container" ng-controller="ConversionController as conversion">
+      <h1>Angular.js unit conversion tool</h1>
+
+      <div class="col-md-12">
+        Select a category
+        </br>
+        <select ng-model="conversion.selectedCategory"
+        ng-options="category as category.name for category in conversion.categories"
+        ng-change="conversion.updateConvertedUnitValue()"></select>
+      </div>
+
+
+      <div class="col-md-3">
+        Select initial unit
+        </br>
+        <select ng-model="conversion.currentUnit"
+        ng-options="unit as unit.name for unit in conversion.selectedCategory.units"
+        ng-change="conversion.updateConvertedUnitValue()"></select>
+      </div>
+
+      <div class="col-md-3">
+        Initial unit value
+        </br>
+        <input ng-model="conversion.currentUnitValue" type="number" class="form-control"
+        ng-change="conversion.updateConvertedUnitValue()">
+      </div>
+
+      <div class="col-md-3">
+        Select target unit
+        </br>
+        <select ng-model="conversion.convertedUnit"
+        ng-options="unit as unit.name for unit in conversion.selectedCategory.units"
+        ng-change="conversion.updateConvertedUnitValue()"></select>
+      </div>
+
+      <div class="col-md-3">
+        Output
+        </br>
+        {{conversion.convertedUnitValue}}
+      </div>
+
+
+    </div>
   </body>
 </html>
