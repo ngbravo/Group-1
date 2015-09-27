@@ -42,8 +42,10 @@ app.controller('ConversionController', function(){
       var results = [];
       for(var i = 0; i < this.selectedCategory.units.length; i++){
         var unit = this.selectedCategory.units[i];
-        var convertedValue = (toBase - unit.conversionOffset) / unit.conversionSlope;
-        results.push({name: unit.name, value: convertedValue});
+        if(unit.favorite === true){
+          var convertedValue = (toBase - unit.conversionOffset) / unit.conversionSlope;
+          results.push({name: unit.name, value: convertedValue});
+        }
       }
       this.convertedUnitValues = results;
     }
