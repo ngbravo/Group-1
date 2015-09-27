@@ -1,0 +1,9 @@
+<div class="container">
+  <div ng-repeat='category in unitsCtrl.categories'>
+    <h2>{{category.name}}</h2>
+    <div ng-repeat='unit in category.units'>
+      <h3>{{unit.name}}</h3>
+      <input type='checkbox' ng-model='unit.favorite' value='unit.favorite'/>
+    </div>
+  </div>
+</div>
