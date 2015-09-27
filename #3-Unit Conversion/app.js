@@ -1,4 +1,15 @@
-var app = angular.module('conversor', [ ]);
+var app = angular.module('conversor', ['ngRoute']);
+
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/home', {
+            templateUrl: 'main.html',
+            controller: 'ConversionController'
+        })
+        .otherwise({
+            redirectTo: '/home'
+        });
+});
 
 app.controller('ConversionController', function(){
   this.categories = unitCategories;
