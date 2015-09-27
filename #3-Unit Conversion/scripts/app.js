@@ -1,5 +1,5 @@
 //Angular module
-var app = angular.module('conversor', ['ngRoute']);
+var app = angular.module('conversor', ['ngRoute','ngStorage']);
 
 //Routes config
 app.config(function($routeProvider) {
@@ -21,13 +21,18 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller('UnitsController', function(){
-    this.categories = unitCategories;
+app.controller('UnitsController', function($scope, $localStorage, $sessionStorage){
+    this.categories = $localStorage.categories;
 });
 
 //Conversion Controller
-app.controller('ConversionController', function(){
-  this.categories = unitCategories;
+app.controller('ConversionController', function($scope, $localStorage, $sessionStorage){
+  if($localStorage.categories == null){
+    $localStorage.categories = unitCategories;
+  }
+  this.categories = $localStorage.categories;
+
+  //this.categories = unitCategories;
   this.selectedCategory = this.categories[0];
   this.currentUnit = null;
   this.currentUnitValue = 0;
