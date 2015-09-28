@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Angular.js unit conversion tool</h1>
+
+  <div class="col-md-12">
+    Select a category
+    </br>
+    <select ng-model="conversionCtrl.selectedCategory"
+    ng-options="category as category.name for category in conversionCtrl.categories"
+    ng-change="conversionCtrl.updateConvertedUnitValue()"></select>
+  </div>
+
+  <div class="col-md-4">
+    Select initial unit
+    </br>
+    <select ng-model="conversionCtrl.currentUnit"
+    ng-options="unit as unit.name for unit in conversionCtrl.selectedCategory.units"
+    ng-change="conversionCtrl.updateConvertedUnitValue()"></select>
+  </div>
+
+  <div class="col-md-4">
+    Initial unit value
+    </br>
+    <input ng-model="conversionCtrl.currentUnitValue" type="number" class="form-control"
+    ng-change="conversionCtrl.updateConvertedUnitValue()">
+  </div>
+
+  <div class="col-md-4">
+    Output
+    </br>
+    <ul>
+      <li ng-repeat="unit in conversionCtrl.convertedUnitValues" ng-if="conversionCtrl.convertedUnitValues !== 'N/A'">
+        <strong>{{unit.name}}:</strong> {{unit.value}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-12">
+    <a class="btn btn-primary" href="#/units">Favorite Units</a>
+    <a class="btn btn-primary" href="#/custom-formulas">Custom Formulas</a>
+  </div>
+</div>

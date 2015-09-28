@@ -1,85 +1,12 @@
 //Angular module
 var app = angular.module('conversor', ['ngRoute','ngStorage']);
 
-//Routes config
-app.config(function($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'templates/main.html',
-            controller: 'ConversionController as conversion'
-        })
-        .when('/units',{
-          templateUrl: 'templates/units.html',
-          controller: 'UnitsController as unitsCtrl'
-        })
-        .when('/custom-formulas', {
-          templateUrl: 'templates/custom-formulas.html',
-          controller: 'CustomFormulasController as customCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
-});
-
-app.controller('CustomFormulasController', function($scope, $localStorage, $sessionStorage){
+var getCategories = function($localStorage){
   if($localStorage.categories == null){
     $localStorage.categories = unitCategories;
   }
-  this.categories = $localStorage.categories;
-  this.selectedCategory = this.categories[0];
-  this.baseUnit = this.selectedCategory.units[0];
-  this.newFormula = {isBaseUnit:false, isCustom:true};
-  this.addFormula = function(){
-    this.selectedCategory.units.push(this.newFormula);
-    this.newFormula = {isBaseUnit:false, isCustom:true};
-  };
-  this.deleteFormula = function(index){
-    this.selectedCategory.units.splice(index,1);
-  };
-});
-
-app.controller('UnitsController', function($scope, $localStorage, $sessionStorage){
-  if($localStorage.categories == null){
-    $localStorage.categories = unitCategories;
-  }
-  this.categories = $localStorage.categories;
-});
-
-//Conversion Controller
-app.controller('ConversionController', function($scope, $localStorage, $sessionStorage){
-  if($localStorage.categories == null){
-    $localStorage.categories = unitCategories;
-  }
-  this.categories = $localStorage.categories;
-
-  //this.categories = unitCategories;
-  this.selectedCategory = this.categories[0];
-  this.currentUnit = null;
-  this.currentUnitValue = 0;
-  this.convertedUnitValues = "N/A";
-  this.updateConvertedUnitValue = function(){
-    try {
-      if(this.currentUnit === null){
-        this.convertedUnitValues = "N/A";
-        return;
-      }
-      var toBase = this.currentUnitValue * this.currentUnit.conversionSlope + this.currentUnit.conversionOffset;
-      var results = [];
-      for(var i = 0; i < this.selectedCategory.units.length; i++){
-        var unit = this.selectedCategory.units[i];
-        if(unit.favorite === true){
-          var convertedValue = (toBase - unit.conversionOffset) / unit.conversionSlope;
-          results.push({name: unit.name, value: convertedValue});
-        }
-      }
-      this.convertedUnitValues = results;
-    }
-    catch(err) {
-        this.convertedUnitValue = "N/A";
-    }
-  };
-});
-
+  return $localStorage.categories;
+}
 //base * conversionSlope + conversionOffset = newUnit
 //conversiones son de cualquier unidad a la base
 var unitCategories = [
