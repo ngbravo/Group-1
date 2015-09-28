@@ -14,15 +14,35 @@ app.config(function($routeProvider) {
         })
         .when('/custom-formulas', {
           templateUrl: 'templates/custom-formulas.html',
-          controller: 'CustomFormulasController'
+          controller: 'CustomFormulasController as customCtrl'
         })
         .otherwise({
             redirectTo: '/'
         });
 });
 
+app.controller('CustomFormulasController', function($scope, $localStorage, $sessionStorage){
+  if($localStorage.categories == null){
+    $localStorage.categories = unitCategories;
+  }
+  this.categories = $localStorage.categories;
+  this.selectedCategory = this.categories[0];
+  this.baseUnit = this.selectedCategory.units[0];
+  this.newFormula = {isBaseUnit:false, isCustom:true};
+  this.addFormula = function(){
+    this.selectedCategory.units.push(this.newFormula);
+    this.newFormula = {isBaseUnit:false, isCustom:true};
+  };
+  this.deleteFormula = function(index){
+    this.selectedCategory.units.splice(index,1);
+  };
+});
+
 app.controller('UnitsController', function($scope, $localStorage, $sessionStorage){
-    this.categories = $localStorage.categories;
+  if($localStorage.categories == null){
+    $localStorage.categories = unitCategories;
+  }
+  this.categories = $localStorage.categories;
 });
 
 //Conversion Controller
@@ -114,16 +134,16 @@ var unitCategories = [
     name: "weight",
     units:[
       {
-        name: "gram",
-        isBaseUnit: false,
-        conversionSlope: 0.001,
+        name: "kilogram",
+        isBaseUnit: true,
+        conversionSlope: 1,
         conversionOffset: 0,
         favorite:false
       },
       {
-        name: "kilogram",
-        isBaseUnit: true,
-        conversionSlope: 1,
+        name: "gram",
+        isBaseUnit: false,
+        conversionSlope: 0.001,
         conversionOffset: 0,
         favorite:false
       },
