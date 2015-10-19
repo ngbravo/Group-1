@@ -1,0 +1,7 @@
+{{#if editing}}
+     {{input class="edit" value=category.title enter="submitCategory"}}
+{{else}}
+    <label>{{#link-to 'lists.list.category' category}}{{category.title}}{{/link-to}}</label>
+    <button class="btn btn-primary" {{action "editCategory"}}>Edit</button>
+    <button class="btn btn-danger" {{action "deleteCategory"}}>Delete</button>
+{{/if}}

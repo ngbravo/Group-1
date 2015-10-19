@@ -1,0 +1,5 @@
+<h3>->{{model.title}}</h3>
+{{todo-input action="createTodo"}}
+{{#todo-list todos=model.todos deleteTodo="deleteTodo"}}
+    {{outlet}}
+{{/todo-list}}

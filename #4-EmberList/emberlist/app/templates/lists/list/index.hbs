@@ -1,0 +1,8 @@
+{{category-input action='createCategory'}}
+<section id="main">
+    <ul id="todo-list">
+        {{#each model.categories as |category|}}
+            {{category-item category=category updateCategory="updateCategory" deleteCategory="deleteCategory"}}
+        {{/each}}
+    </ul>
+</section>

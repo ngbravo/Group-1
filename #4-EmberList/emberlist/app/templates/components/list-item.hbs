@@ -1,0 +1,8 @@
+{{#if editing}}
+     {{input class="edit" value=list.title enter="submitList"}}
+{{else}}
+    <label>{{#link-to 'lists.list' list}}{{list.title}}{{/link-to}}</label>
+    <button class="btn btn-primary" {{action "editList"}}>Edit</button>
+    <button class="btn btn-primary" {{action "cloneList"}}>Clone</button>
+    <button class="btn btn-danger" {{action "deleteList"}}>Delete</button>
+{{/if}}

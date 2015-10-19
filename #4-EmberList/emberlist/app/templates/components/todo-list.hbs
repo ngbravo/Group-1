@@ -1,0 +1,17 @@
+<section id="main">
+    {{yield}}
+</section>
+
+<footer id="footer">
+    <ul id="filters">
+        <li>
+            {{#link-to "lists.list.category.todos.index" activeClass="selected"}}All{{/link-to}}
+        </li>
+        <li>
+            {{#link-to "lists.list.category.todos.incomplete" activeClass="selected"}}Active{{/link-to}}
+        </li>
+        <li>
+            {{#link-to "lists.list.category.todos.complete" activeClass="selected"}}Complete{{/link-to}}
+        </li>
+    </ul>
+</footer>
