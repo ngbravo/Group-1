@@ -1,0 +1,22 @@
+{
+  "name": "#5-Web Components",
+  "homepage": "https://github.com/IIC3585-2015-2/Group-1",
+  "authors": [
+    "Nikolas Bravo <nikolasbra@gmail.com>",
+    "Guillermo Valenzuela <gevalenz@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  }
+}
