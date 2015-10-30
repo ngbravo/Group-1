@@ -8,7 +8,7 @@
   <template>
     <google-chart
       type={{type}}
-      options='{"title": "Parse Graph"}'
+      options={{options}}
       data={{data}}>
     </google-chart>
   </template>
@@ -19,6 +19,15 @@
       properties: {
         table: {
           type: String
+        },
+        title: {
+          type: String
+        },
+        options: {
+          type: Object,
+          value: {
+            title: "Parse graph"
+          }
         },
         parseappid: {
           type: String
@@ -60,8 +69,7 @@
           dataArray.push([datum[label], datum[value]]);
         });
         this.data = dataArray;
-        //this.data = JSON.stringify(dataArray);
-        console.log(this.data);
+        this.options.title = this.title;       
       }
     });
   </script>
