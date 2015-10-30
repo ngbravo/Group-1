@@ -6,32 +6,61 @@
 <dom-module id="parse-chart">
 
   <template>
-    <firebase-collection
-      order-by-child="height"
-      location="https://le-app.firebaseio.com"
-      data="{{data}}">
-    </firebase-collection>
-
     <google-chart
-      type='bar'
-      options='{"title": "Firebase Title"}'
-      cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
-      rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+      type={{type}}
+      options='{"title": "Parse Graph"}'
+      data={{data}}>
     </google-chart>
-    {{data}}
-
   </template>
 
   <script>
-
     Polymer({
       is: "parse-chart",
       properties: {
+        table: {
+          type: String
+        },
+        parseappid: {
+          type: String
+        },
+        parserestapikey: {
+          type: String
+        },
         data: {
-          type: Array
+          type: Object
+        },
+        type: {
+          type: String
+        },
+        labelkey: {
+          type: String
+        },
+        valuekey: {
+          type: String
         }
       },
       ready: function() {
+
+        var xhttp = new XMLHttpRequest();
+
+        //Async doesn't bind :(
+        xhttp.open("GET", "https://api.parse.com/1/classes/" + this.table, false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("X-Parse-Application-Id", this.parseappid);
+        xhttp.setRequestHeader("X-Parse-REST-API-Key", this.parserestapikey);
+        xhttp.send();
+        var results = JSON.parse(xhttp.responseText).results;
+
+        var label = this.labelkey;
+        var value = this.valuekey;
+
+        var dataArray = [[this.labelkey, this.valuekey]];
+
+        results.forEach(function(datum){
+          dataArray.push([datum[label], datum[value]]);
+        });
+        this.data = dataArray;
+        //this.data = JSON.stringify(dataArray);
         console.log(this.data);
       }
     });
