@@ -1,0 +1,37 @@
+<link rel="import"
+      href="bower_components/polymer/polymer.html">
+
+<dom-module id="component-calculator">
+
+  <template>
+  	<input type="text" on-input="calculate" value="{{toCalculate::input}}"><br>
+    {{result}}
+  </template>
+
+  <script>
+
+    Polymer({
+      is: "component-calculator",
+      properties: {
+        toCalculate: {
+          type: String,
+          value: " "
+        },
+        result: {
+          type: Number,
+          value: 0
+        }
+      },
+      ready: function() {
+      	this.calculate();
+      },
+      calculate: function() {
+        console.log(this.toCalculate);
+        this.result = eval(this.toCalculate);
+
+
+      }
+    });
+  </script>
+  
+</dom-module>
