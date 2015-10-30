@@ -32,6 +32,10 @@
         lorem: {
         	type: String,
         	value: ""
+        },
+        multiplier: {
+        	type: Number,
+        	value: 1
         }
       },
       ready: function() {
@@ -39,7 +43,7 @@
       },
       updateLorem: function() {
       	this.lorem = "";
-      	wordsLeft = this.words*10;
+      	wordsLeft = this.words * this.multiplier;
       	while(wordsLeft >= loremWords.length) {
       		this.lorem += loremWords.join(" ") + " ";
       		wordsLeft -= loremWords.length;
