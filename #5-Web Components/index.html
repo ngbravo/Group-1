@@ -4,7 +4,8 @@
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="component-calculator.html">
     <link rel="import" href="custom-lorem.html">
-    <link rel="import" href="firebase-graph.html">
+    <link rel="import" href="parse-collection.html">
+    <link rel="import" href="parse-chart.html">
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js" crossorigin="anonymous"></script>
@@ -17,11 +18,15 @@
 
   </head>
   <body>
-  	<h1>calculator</h1>
+  	<h1>component-calculator</h1>
     <component-calculator></component-calculator>
     <h1>custom-lorem</h1>
     <custom-lorem multiplier="10"></custom-lorem>
-    <h1>firebase-graph</h1>
-    <custom-lorem></custom-lorem>
+    <h1>parse-collection</h1>
+    <parse-collection 
+    	parseappid="TQx8ClQ6ZX26EvYLMCfMySHL4bZ9eqdEEy0OsSjY"
+    	parserestapikey="84Rjgq95uNGM2bLUcOh0LkcB2KmuYxM23zkNhxVI"
+    	table="Tareas"
+    ></parse-collection>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<link rel="import"
+      href="bower_components/polymer/polymer.html">
+<link rel="import"
+      href="bower_components/google-chart/google-chart.html">
+
+<dom-module id="parse-chart">
+
+  <template>
+    <firebase-collection
+      order-by-child="height"
+      location="https://le-app.firebaseio.com"
+      data="{{data}}">
+    </firebase-collection>
+
+    <google-chart
+      type='bar'
+      options='{"title": "Firebase Title"}'
+      cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+      rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+    </google-chart>
+    {{data}}
+
+  </template>
+
+  <script>
+
+    Polymer({
+      is: "parse-chart",
+      properties: {
+        data: {
+          type: Array
+        }
+      },
+      ready: function() {
+        console.log(this.data);
+      }
+    });
+  </script>
+  
+</dom-module>

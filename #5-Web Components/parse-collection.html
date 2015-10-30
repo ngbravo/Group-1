@@ -1,0 +1,52 @@
+<link rel="import"
+      href="bower_components/polymer/polymer.html">
+
+<dom-module id="parse-collection">
+
+  <template>
+    {{table}}
+  </template>
+
+  <script>
+
+    Polymer({
+      is: "parse-collection",
+      properties: {
+        table: {
+          type: String
+        },
+        parseappid: {
+          type: String
+        },
+        parserestapikey: {
+          type: String
+        },
+        data: {
+          type: Array,
+          readOnly: true,
+          notify: true,
+          value: function() {
+            return [];
+          }
+        }
+      },
+      ready: function() {
+        var xhttp = new XMLHttpRequest();
+        
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            console.log(xhttp.responseText);
+          }
+        }
+
+        xhttp.open("GET", "https://api.parse.com/1/classes/" + this.table, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("X-Parse-Application-Id", this.parseappid);
+        xhttp.setRequestHeader("X-Parse-REST-API-Key", this.parserestapikey);
+
+        xhttp.send();
+      }
+    });
+  </script>
+  
+</dom-module>
