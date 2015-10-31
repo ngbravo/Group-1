@@ -19,6 +19,6 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
     "google-chart": "GoogleWebComponents/google-chart#~1.0.3",
-    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.7"
+    "paper-card": "PolymerElements/paper-card#~1.0.7"
   }
 }
