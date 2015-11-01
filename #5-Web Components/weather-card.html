@@ -1,0 +1,44 @@
+<link rel="import"
+      href="bower_components/polymer/polymer.html">
+
+<dom-module id="weather-card">
+
+  <template>
+    {{output}}
+  </template>
+
+  <script>
+
+    Polymer({
+      is: "weather-card",
+      properties: {
+        city: {
+          type: String
+        },
+        country: {
+          type: String
+        },
+        output: {
+          type: String
+        }
+      },
+      ready: function() {
+        var xhttp = new XMLHttpRequest();
+        //Async doesn't bind :(
+
+        var appId = "bd82977b86bf27fb59a04b61b657fb6f"
+
+        xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q="+this.city+","+this.country + "&appid=" + appId, false);
+        xhttp.send();
+        var results = JSON.parse(xhttp.responseText);
+
+        var weather = results.weather;
+        var mainData = results.main;
+        var wind = results.wind;
+        
+        console.log(results);
+      }
+    });
+  </script>
+
+</dom-module>
