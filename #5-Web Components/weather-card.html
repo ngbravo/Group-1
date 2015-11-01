@@ -1,12 +1,16 @@
 <link rel="import"
       href="bower_components/polymer/polymer.html">
+<link rel="import"
+      href="bower_components/paper-card/paper-card.html">
 
 <dom-module id="weather-card">
 
   <template>
-    {{output}}
+    <paper-card heading={{city}}>
+      <div class="card-content">
+        {{weather}}, with a current temperature of {{temperature}}°C and {{humidity}}% humidity
+    </paper-card>
   </template>
-
   <script>
 
     Polymer({
@@ -18,7 +22,13 @@
         country: {
           type: String
         },
-        output: {
+        temperature: {
+          type: Number
+        },
+        humidity: {
+          type: Number
+        },
+        weather: {
           type: String
         }
       },
@@ -30,13 +40,19 @@
 
         xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q="+this.city+","+this.country + "&appid=" + appId, false);
         xhttp.send();
-        var results = JSON.parse(xhttp.responseText);
+        var data = JSON.parse(xhttp.responseText);
 
-        var weather = results.weather;
-        var mainData = results.main;
-        var wind = results.wind;
-        
-        console.log(results);
+        this.temperature = Math.round((data.main.temp - 273) * 10) / 10;
+        this.humidity = data.main.humidity;
+        this.weather = this.toSentenceCase(data.weather[0].description);
+      },
+      toSentenceCase(str) {
+
+        String.prototype.replaceAt = function(index, character) {
+            return this.substr(0, index) + character + this.substr(index+character.length);
+        }
+
+        return str.toLowerCase().replaceAt(0, str[0].toUpperCase());
       }
     });
   </script>
