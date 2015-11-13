@@ -1,7 +1,7 @@
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-<dom-module id="custom-lorem">
+<dom-module id="slider-lorem">
 
   <template>
   	<input type="range" on-input="updateLorem" value="{{words::input}}" min="0" max="100">
@@ -23,7 +23,7 @@
     ];
 
     Polymer({
-      is: "custom-lorem",
+      is: "slider-lorem",
       properties: {
         words: {
           type: Number,
@@ -52,5 +52,5 @@
       }
     });
   </script>
-  
+
 </dom-module>
