@@ -1,6 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom";
+import DeckList from "./components/DeckList";
 import Deck from "./components/Deck";
+import { render } from 'react-dom'
+import { Router, Route, Link } from 'react-router'
+
 
 var CARD_REVERSE1 = [{contentText:"hola2"},{contentText:"chao2"},{contentText:"data666"}];
 var CARD_FRONT1 = [{contentText:"hola"},{contentText:"chao"},{contentText:"data"}];
@@ -13,9 +17,18 @@ var CARDS = [
   {title: "Titulo2", front:CARD_FRONT2, reverse:CARD_REVERSE2, size: "large", thumbnail: false}
 ];
 
-ReactDOM.render(
+/*ReactDOM.render(
   <div className="collection">
     <Deck cards={CARDS} title="Le Deck" fullView={true}/>
   </div>,
   document.getElementById("deck")
-);
+);*/
+
+render((
+  <Router>
+    <Route path="/" component={DeckList}>
+      <Route path="/deck/:deckId" component={Deck}>
+      </Route>
+    </Route>
+  </Router>
+), document.getElementById("body"));
