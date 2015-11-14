@@ -11,22 +11,22 @@ export default React.createClass({
   },
   render: function(){
     if (this.state.showReverse) {
-      //show reverse
-      return(
-        <div>
-          <p onClick={this.onClick}>rotate</p>
-          <CardSide contents={this.props.reverse}/>
-        </div>
-      );
+      var side = this.props.reverse;
     }
     else {
-      //show front
-      return(
-        <div>
-          <p onClick={this.onClick}>rotate</p>
-          <CardSide contents={this.props.front}/>
-        </div>
-      );
+      var side = this.props.front;
     }
+
+    return(
+      <div className="card">
+        <div className="card-content">
+          <span className="card-title">Card Title</span>
+          <CardSide contents={side}/>
+        </div>
+        <div className="card-action">
+          <a href="#" onClick={this.onClick}>Rotate</a>
+        </div>
+      </div>
+    );
   }
 });
