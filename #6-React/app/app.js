@@ -14,6 +14,8 @@ var CARDS = [
 ];
 
 ReactDOM.render(
-  <Deck cards={CARDS}/>,
+  <div className="collection">
+    <Deck cards={CARDS} title="Le Deck" fullView={true}/>
+  </div>,
   document.getElementById("deck")
 );
