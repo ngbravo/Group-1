@@ -27,8 +27,8 @@ var CARDS = [
 render((
   <Router>
     <Route path="/" component={DeckList}>
-      <Route path="/deck/:deckId" component={Deck}>
-      </Route>
+    </Route>
+    <Route path="/deck/:deckId" component={Deck}>
     </Route>
   </Router>
 ), document.getElementById("body"));

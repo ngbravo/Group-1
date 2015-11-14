@@ -18,12 +18,18 @@ export default React.createClass({
     var cards=[];
     CARDS.forEach(function(card){
       cards.push(
-        <Card
-          front={card.front}
-          reverse={card.reverse}
-          title={card.title}
-          size={card.size}/>);
+        <div className="col s12 m3">
+          <div className="card-panel teal">
+            <span className="white-text">
+              {card.title}
+            </span>
+          </div>
+        </div>);
     });
-    return(<div className="row">{cards}</div>);
+    return(
+      <div>
+        <h1>DeckTitle</h1>
+        <div className="row">{cards}</div>
+      </div>);
   }
 });
