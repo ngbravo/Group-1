@@ -7,7 +7,7 @@ export default React.createClass({
   render: function(){
     var decks=[];
     DECKS.forEach(function(deck){
-      decks.push(<a href={`#/deck/${deck.id}`} className="collection-item">{deck.title}</a>);
+      decks.push(<a href={`#/decks/${deck.id}`} className="collection-item">{deck.title}</a>);
     });
 
     return(
