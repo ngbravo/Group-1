@@ -7,7 +7,6 @@ export default React.createClass({
   },
   onClick: function() {
       this.setState({ showReverse: !this.state.showReverse });
-      console.log("clicked card");
   },
   render: function(){
     if (this.state.showReverse) {
@@ -16,11 +15,12 @@ export default React.createClass({
     else {
       var side = this.props.front;
     }
+    console.log(this.props);
 
     return(
       <div className="card">
         <div className="card-content">
-          <span className="card-title">Card Title</span>
+          <span className="card-title">{this.props.title}</span>
           <CardSide contents={side}/>
         </div>
         <div className="card-action">
