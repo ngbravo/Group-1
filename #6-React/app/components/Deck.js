@@ -5,7 +5,11 @@ export default React.createClass({
   render: function(){
     var cards=[];
     this.props.cards.forEach(function(card){
-      cards.push(<Card front={card.front} reverse={card.reverse} title={card.title}/>);
+      cards.push(<Card
+        front={card.front}
+        reverse={card.reverse}
+        title={card.title}
+        size={card.size}/>);
     });
 
     return(<div>{cards}</div>);

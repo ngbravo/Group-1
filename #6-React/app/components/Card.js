@@ -9,22 +9,23 @@ export default React.createClass({
       this.setState({ showReverse: !this.state.showReverse });
   },
   render: function(){
-    if (this.state.showReverse) {
-      var side = this.props.reverse;
-    }
-    else {
-      var side = this.props.front;
-    }
-    console.log(this.props);
+    var size = "card " + this.props.size;
 
     return(
-      <div className="card">
-        <div className="card-content">
-          <span className="card-title">{this.props.title}</span>
-          <CardSide contents={side}/>
-        </div>
-        <div className="card-action">
-          <a href="#" onClick={this.onClick}>Rotate</a>
+      <div class="col s12 m6">
+        <div className={size}>
+          <div className="card-content">
+            <span className="card-title">{this.props.title}</span>
+            <CardSide contents={this.props.front}/>
+          </div>
+          <div className="card-reveal">
+            <span className="card-title">{this.props.title} - Reverse<i className="material-icons right">close</i></span>
+            <CardSide contents={this.props.reverse}/>
+          </div>
+          <div className="card-action">
+            <a href="#" className="activator">View reverse</a>
+            <a href="#">Edit</a>
+          </div>
         </div>
       </div>
     );
