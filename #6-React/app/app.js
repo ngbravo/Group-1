@@ -1,11 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom";
-import CardSide from "./components/CardSide";
+import Card from "./components/Card";
 
+var CARD_REVERSE = [{contentText:"hola2"},{contentText:"chao2"},{contentText:"data666"}];
 
-var CONTENTS = [{contentText:"hola"},{contentText:"chao"},{contentText:"data"}];
+var CARD_FRONT = [{contentText:"hola"},{contentText:"chao"},{contentText:"data"}];
 
 ReactDOM.render(
-  <CardSide contents={CONTENTS}/>,
-  document.body
+  <Card reverse={CARD_REVERSE} front={CARD_FRONT}/>,
+  document.getElementById("content")
 );
