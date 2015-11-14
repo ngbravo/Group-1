@@ -21,12 +21,10 @@ export default React.createClass({
     CARDS.forEach(function(card){
       cards.push(
         <div className="col s12 m3">
-          <div className="card-panel teal">
-            <span className="white-text">
-              <Link to={`/cards/${card.id}`}>
-                {card.title}
-              </Link>
-            </span>
+          <div className="card-panel">
+            <Link to={`/cards/${card.id}`}>
+              {card.title}
+            </Link>
           </div>
         </div>);
     });
