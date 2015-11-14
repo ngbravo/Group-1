@@ -9,7 +9,8 @@ export default React.createClass({
         front={card.front}
         reverse={card.reverse}
         title={card.title}
-        size={card.size}/>);
+        size={card.size}
+        thumbnail={card.thumbnail}/>);
     });
 
     return(<div>{cards}</div>);
