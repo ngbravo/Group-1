@@ -10,7 +10,8 @@ var CARD_FRONT2 = [{contentText:"hola-2"},{contentText:"chao-2"},{contentText:"d
 
 var CARDS = [
   {title: "Titulo1", front:CARD_FRONT1, reverse:CARD_REVERSE1, size: "medium"},
-  {title: "Titulo2", front:CARD_FRONT2, reverse:CARD_REVERSE2, size: "large"}];
+  {title: "Titulo2", front:CARD_FRONT2, reverse:CARD_REVERSE2, size: "large"}
+];
 
 ReactDOM.render(
   <Deck cards={CARDS}/>,
