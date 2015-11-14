@@ -14,7 +14,7 @@ export default React.createClass({
       //show reverse
       return(
         <div>
-          <p onClick={this.onClick}>link</p>
+          <p onClick={this.onClick}>rotate</p>
           <CardSide contents={this.props.reverse}/>
         </div>
       );
@@ -23,7 +23,7 @@ export default React.createClass({
       //show front
       return(
         <div>
-          <p onClick={this.onClick}>link</p>
+          <p onClick={this.onClick}>rotate</p>
           <CardSide contents={this.props.front}/>
         </div>
       );
