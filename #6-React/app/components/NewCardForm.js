@@ -13,6 +13,8 @@ export default React.createClass({
     var item_title = ReactDOM.findDOMNode(this.refs.item_title).value;
     var front_content = ReactDOM.findDOMNode(this.refs.front_content).value;
     var back_content = ReactDOM.findDOMNode(this.refs.back_content).value;
+    var item_image = ReactDOM.findDOMNode(this.refs.image_file).value;
+
     ReactDOM.findDOMNode(this.refs.item_title).value = '';
     ReactDOM.findDOMNode(this.refs.front_content).value = '';
     ReactDOM.findDOMNode(this.refs.back_content).value = '';
@@ -28,7 +30,8 @@ export default React.createClass({
         title: item_title,
         deckId: deck_id,
         front: front_content,
-        back: back_content
+        back: back_content,
+        image: item_image
       }
     });
   },
@@ -39,7 +42,9 @@ export default React.createClass({
         <input type="text" ref="item_title" placeholder="Card Title"/>
         <input type="text" ref="front_content" placeholder="Front Side Content"/>
         <input type="text" ref="back_content" placeholder="Back Side Content"/>
-          <button className="waves-effect waves-light btn">Add new card</button>
+        <input type="text" ref="image_file" placeholder="(Optional) Image URL"/>
+
+        <button className="waves-effect waves-light btn">Add new card</button>
       </form>;
   }
 });
