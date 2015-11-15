@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Select from 'react-select';
-require('react-select/less/default.less');
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import DeckStore from '../stores/DeckStore';
 
@@ -11,8 +9,6 @@ export default React.createClass({
 
     var id = DeckStore.getNextId();
     var item_title = ReactDOM.findDOMNode(this.refs.item_title).value;
-    var cards_size = ReactDOM.findDOMNode(this.refs.cards_size).value;
-    console.log(cards_size);
     ReactDOM.findDOMNode(this.refs.item_title).value = '';
 
     // This is where the magic happens,
@@ -22,23 +18,16 @@ export default React.createClass({
       action: 'add-deck',
       new_item: {
         id: id,
-        title: item_title,
-        cards_size: cards_size
+        title: item_title
       }
     });
   },
 
   render: function(){
     return <form onSubmit={ this.createItem }>
-        <p>New Deck</p>
+        <h5>New Deck Form</h5>
         <input type="text" ref="item_title" placeholder="Deck Title"/>
-        <Select name="cards_size" ref="cards_size"
-          value="small"
-          options={[{value:'small',label:'Small'},
-          {value:'medium',label:'Medium'},
-          {value:'large',label:'Large'}]}/>
-
-          <button>Add new item</button>
+        <button>Add new item</button>
       </form>;
   }
 });
