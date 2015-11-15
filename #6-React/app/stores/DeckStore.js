@@ -3,9 +3,7 @@ import _ from 'lodash';
 
 export default _.extend({}, EventEmitter.prototype, {
 
-  //Mock default data
-  //items: [{id:0,title:"deck1"},{id:1,title:"deck2"}],
-  items:[],
+  items: JSON.parse(localStorage.getItem('decks')) || [],
 
   getItems: function(){
     return this.items;
@@ -30,6 +28,7 @@ export default _.extend({}, EventEmitter.prototype, {
   // Add item
   addItem: function(new_item){
     this.items.push(new_item);
+    localStorage.setItem('decks', JSON.stringify(this.items));
   },
 
   // Remove item
@@ -42,7 +41,7 @@ export default _.extend({}, EventEmitter.prototype, {
     });
 
     this.items = items;
-
+    localStorage.setItem('decks', JSON.stringify(this.items));
   },
 
   // Emit Change event
