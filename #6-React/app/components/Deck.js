@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./Card";
 import { Router, Route, Link } from "react-router"
 import CardStore from "../stores/CardStore";
+import NewCardForm from "./NewCardForm";
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
 
@@ -44,6 +45,7 @@ export default React.createClass({
       <div>
         <h1>DeckTitle</h1>
         <div className="row">{cards}</div>
+        <NewCardForm deckId={deckId} />
       </div>);
   }
 });

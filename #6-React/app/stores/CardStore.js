@@ -15,8 +15,8 @@ var CARDS = [
 
 export default _.extend({}, EventEmitter.prototype, {
   //TODO uncomment:
-  //items: JSON.parse(localStorage.getItem('cards')) || [],
-  items: CARDS,
+  items: JSON.parse(localStorage.getItem('cards')) || [],
+  //items: CARDS,
 
   getItems: function(deckId){
     let cards = [];
@@ -47,7 +47,7 @@ export default _.extend({}, EventEmitter.prototype, {
   // Add item
   addItem: function(new_item){
     this.items.push(new_item);
-    localStorage.setItem('decks', JSON.stringify(this.items));
+    localStorage.setItem('cards', JSON.stringify(this.items));
   },
 
   // Remove item
@@ -62,7 +62,7 @@ export default _.extend({}, EventEmitter.prototype, {
     });
 
     this.items = items;
-    localStorage.setItem('decks', JSON.stringify(this.items));
+    localStorage.setItem('cards', JSON.stringify(this.items));
   },
 
   // Emit Change event
