@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route, Link } from "react-router";
 import DeckStore from "../stores/DeckStore";
-import NewDeckForm from "./NewDeckForm";
+import DeckForm from "./DeckForm";
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
 // Method to retrieve state from Stores
@@ -48,7 +48,7 @@ export default React.createClass({
     return(
       <div>
         <h1 className="header">Decks</h1>
-        <NewDeckForm />
+        <DeckForm />
         <h5>Your decks</h5>
         <div className="collection">{decks}</div>
       </div>

@@ -3,7 +3,7 @@ import Card from "./Card";
 import { Router, Route, Link } from "react-router"
 import CardStore from "../stores/CardStore";
 import DeckStore from "../stores/DeckStore";
-import NewCardForm from "./NewCardForm";
+import CardForm from "./CardForm";
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
 
@@ -56,7 +56,7 @@ export default React.createClass({
     return(
       <div>
         <h1>{deck.title}</h1>
-        <NewCardForm deckId={deckId} size={deck.card_size} />
+        <CardForm deckId={deckId} size={deck.card_size} />
         <h5>Your cards</h5>
         <div className="row">{cards}</div>
       </div>);
