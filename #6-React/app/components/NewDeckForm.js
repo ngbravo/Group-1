@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Select from 'react-select';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import DeckStore from '../stores/DeckStore';
 
@@ -23,20 +24,17 @@ export default React.createClass({
     });
   },
 
-  /*guid: function(){
-    function s4() {
-   return Math.floor((1 + Math.random()) * 0x10000)
-     .toString(16)
-     .substring(1);
-   }
-   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-     s4() + '-' + s4() + s4() + s4();
-  },*/
-
   render: function(){
     return <form onSubmit={ this.createItem }>
-        <input type="text" ref="item_title"/>
-        <button>Add new item</button>
+        <p>New Deck</p>
+        <input type="text" ref="item_title" placeholder="Deck Title"/>
+        <Select name="size"
+          value="small"
+          options={[{value:'small',label:'Small'},
+          {value:'medium',label:'Medium'},
+          {value:'large',label:'Large'}]}/>
+
+          <button>Add new item</button>
       </form>;
   }
 });
