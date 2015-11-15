@@ -9,6 +9,7 @@ export default React.createClass({
 
     var id = CardStore.getNextId();
     var deck_id = this.props.deckId;
+    var size = this.props.size;
     var item_title = ReactDOM.findDOMNode(this.refs.item_title).value;
     var front_content = ReactDOM.findDOMNode(this.refs.front_content).value;
     var back_content = ReactDOM.findDOMNode(this.refs.back_content).value;
@@ -23,11 +24,11 @@ export default React.createClass({
       action: 'add-card',
       new_item: {
         id: id,
+        size: size,
         title: item_title,
         deckId: deck_id,
         front: front_content,
-        back: back_content,
-        size:'medium' //TODO assign this from deck
+        back: back_content
       }
     });
   },

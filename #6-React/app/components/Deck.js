@@ -56,7 +56,7 @@ export default React.createClass({
     return(
       <div>
         <h1>{deck.title}</h1>
-        <NewCardForm deckId={deckId} />
+        <NewCardForm deckId={deckId} size={deck.card_size} />
         <h5>Your cards</h5>
         <div className="row">{cards}</div>
       </div>);
