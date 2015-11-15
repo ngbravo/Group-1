@@ -28,6 +28,12 @@ export default _.extend({}, EventEmitter.prototype, {
     return cards;
   },
 
+  getItem: function(cardId){
+    return _.find(this.items,(item) => {
+      return cardId == item.id;
+    });
+  },
+
   getNextId: function(){
     var id = -1;
     if(this.items && this.items.length > 0){
