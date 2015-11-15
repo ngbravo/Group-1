@@ -4,7 +4,8 @@ import _ from 'lodash';
 export default _.extend({}, EventEmitter.prototype, {
 
   //Mock default data
-  items: [{id:0,title:"deck1"},{id:1,title:"deck2"}],
+  //items: [{id:0,title:"deck1"},{id:1,title:"deck2"}],
+  items:[],
 
   getItems: function(){
     return this.items;
@@ -12,14 +13,16 @@ export default _.extend({}, EventEmitter.prototype, {
 
   getNextId: function(){
     var id = -1;
-    id = this.items.reduce(function(prev, curr){
-      if(prev.id > curr.id){
-        return prev.id;
-      }
-      else{
-        return curr.id;
-      }
-    });
+    if(this.items && this.items.length > 0){
+      id = this.items.reduce(function(prev, curr){
+        if(prev.id > curr.id){
+          return prev.id;
+        }
+        else{
+          return curr.id;
+        }
+      }, {id:-1});
+    }
 
     return id + 1;
   },
