@@ -43,11 +43,11 @@ export default React.createClass({
     CardStore.getItems(deckId).forEach(function(card){
       cards.push(
         <div className="col s12 m3">
-          <div className="card-panel">
+          <div className="card-panel hoverable">
             <Link to={`/cards/${card.id}`}>
               {card.title}
             </Link>
-            <button onClick={ _this.removeItem } data-id={ card.id }>×</button>
+            <i className="material-icons right" onClick={ _this.removeItem } data-id={ card.id }>delete</i>
           </div>
         </div>);
     });

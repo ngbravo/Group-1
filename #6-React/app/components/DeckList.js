@@ -39,9 +39,9 @@ export default React.createClass({
     var decks =[];
     DeckStore.getItems().forEach(function(deck){
       decks.push(
-      <div>
-        <a key={deck.id} href={`#/decks/${deck.id}`} className="collection-item">{deck.title}</a>
-        <button onClick={ _this.removeItem } data-id={ deck.id }>×</button>
+      <div className="collection-item">
+        <a key={deck.id} href={`#/decks/${deck.id}`}>{deck.title}</a>
+        <i className="material-icons right" onClick={ _this.removeItem } data-id={ deck.id }>delete</i>
       </div>);
     });
 
