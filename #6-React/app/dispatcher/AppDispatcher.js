@@ -34,6 +34,12 @@ AppDispatcher.register((payload) => {
       DeckStore.emitChange();
       break;
 
+    case 'remove-card':
+      CardStore.removeItem(id);
+      // If action was responded to, emit change event
+      CardStore.emitChange();
+      break;
+
     default:
       return true;
   }

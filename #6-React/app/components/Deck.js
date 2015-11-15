@@ -27,6 +27,15 @@ export default React.createClass({
     CardStore.removeChangeListener(this.onChangeMethod);
   },
 
+  removeItem: function(e){
+    let id = e.target.dataset.id;
+
+    AppDispatcher.dispatch({
+      action: 'remove-card',
+      id: id
+    });
+  },
+
   render: function(){
     var _this = this;
     var deckId = this.props.params.deckId;
@@ -38,6 +47,7 @@ export default React.createClass({
             <Link to={`/cards/${card.id}`}>
               {card.title}
             </Link>
+            <button onClick={ _this.removeItem } data-id={ card.id }>×</button>
           </div>
         </div>);
     });
