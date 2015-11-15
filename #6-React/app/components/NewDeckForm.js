@@ -18,7 +18,8 @@ export default React.createClass({
       action: 'add-deck',
       new_item: {
         id: id,
-        title: item_title
+        title: item_title,
+        cards: []
       }
     });
   },
