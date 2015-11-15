@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./Card";
 import { Router, Route, Link } from "react-router"
 import CardStore from "../stores/CardStore";
+import DeckStore from "../stores/DeckStore";
 import NewCardForm from "./NewCardForm";
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
@@ -39,6 +40,7 @@ export default React.createClass({
   render: function(){
     var _this = this;
     var deckId = this.props.params.deckId;
+    var deck = DeckStore.getItem(deckId);
     var cards=[];
     CardStore.getItems(deckId).forEach(function(card){
       cards.push(
@@ -53,7 +55,7 @@ export default React.createClass({
     });
     return(
       <div>
-        <h1>DeckTitle</h1>
+        <h1>{deck.title}</h1>
         <div className="row">{cards}</div>
         <NewCardForm deckId={deckId} />
       </div>);

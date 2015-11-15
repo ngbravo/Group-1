@@ -28,7 +28,7 @@ export default React.createClass({
     return <form onSubmit={ this.createItem }>
         <h5>New Deck Form</h5>
         <input type="text" ref="item_title" placeholder="Deck Title"/>
-        <button>Add new item</button>
+        <button className="waves-effect waves-light btn">Add new deck</button>
       </form>;
   }
 });

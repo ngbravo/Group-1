@@ -9,6 +9,18 @@ export default _.extend({}, EventEmitter.prototype, {
     return this.items;
   },
 
+  getItem: function(deckId){
+    var deck;
+    this.items.forEach(function(item){
+
+      if(item.id == deckId){
+        deck = item;
+        return;
+      }
+    });
+    return deck;
+  },
+
   getNextId: function(){
     var id = -1;
     if(this.items && this.items.length > 0){

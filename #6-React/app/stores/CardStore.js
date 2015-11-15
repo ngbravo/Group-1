@@ -2,7 +2,7 @@ import {EventEmitter} from 'events';
 import _ from 'lodash';
 
 export default _.extend({}, EventEmitter.prototype, {
-  //TODO uncomment:
+
   items: JSON.parse(localStorage.getItem('cards')) || [],
 
   getItems: function(deckId){

@@ -38,7 +38,7 @@ export default React.createClass({
         <input type="text" ref="item_title" placeholder="Card Title"/>
         <input type="text" ref="front_content" placeholder="Front Side Content"/>
         <input type="text" ref="back_content" placeholder="Back Side Content"/>
-        <button>Add new item</button>
+          <button className="waves-effect waves-light btn">Add new card</button>
       </form>;
   }
 });
