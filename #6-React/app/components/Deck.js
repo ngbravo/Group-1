@@ -56,8 +56,9 @@ export default React.createClass({
     return(
       <div>
         <h1>{deck.title}</h1>
-        <div className="row">{cards}</div>
         <NewCardForm deckId={deckId} />
+        <h5>Your cards</h5>
+        <div className="row">{cards}</div>
       </div>);
   }
 });

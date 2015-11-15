@@ -34,7 +34,7 @@ export default React.createClass({
 
   render: function(){
     return <form onSubmit={ this.createItem }>
-        <h5>New Card Form</h5>
+        <h5>Add a card</h5>
         <input type="text" ref="item_title" placeholder="Card Title"/>
         <input type="text" ref="front_content" placeholder="Front Side Content"/>
         <input type="text" ref="back_content" placeholder="Back Side Content"/>

@@ -48,8 +48,9 @@ export default React.createClass({
     return(
       <div>
         <h1 className="header">Decks</h1>
-        <div className="collection">{decks}</div>
         <NewDeckForm />
+        <h5>Your decks</h5>
+        <div className="collection">{decks}</div>
       </div>
     );
   }

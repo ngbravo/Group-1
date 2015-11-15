@@ -17,6 +17,7 @@ export default React.createClass({
   },
   render: function(){
     var card = CardStore.getItem(this.props.params.cardId);
+    console.log(card);
     var size = "card " + card.size;
 
     return(
@@ -34,6 +35,7 @@ export default React.createClass({
             <div className="card-action">
               <a className="activator">View reverse</a>
               <a href="#">Edit</a>
+              <a key={card.deckId} href={`#/decks/${card.deckId}`} className="right">Close</a>
             </div>
           </div>
         </div>
