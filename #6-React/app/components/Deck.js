@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import { Router, Route, Link } from "react-router"
+import ReactDOM from 'react-dom';
 import CardStore from "../stores/CardStore";
 import DeckStore from "../stores/DeckStore";
 import CardForm from "./CardForm";
@@ -9,6 +10,9 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 
 export default React.createClass({
 
+  getInitialState: function() {
+      return {searchedBy: null};
+  },
   // Method to retrieve state from Stores
   getListState: function(){
     return {
@@ -36,6 +40,16 @@ export default React.createClass({
       id: id
     });
   },
+  onSearchChange: function(e) {
+    var search = document.getElementById('icon_prefix').value;
+    if(search != ""){
+      this.state = {searchedBy: search};
+    }
+    else {
+      this.state = {searchedBy: null};
+    }
+    this.forceUpdate();
+  },
 
   render: function(){
     var _this = this;
@@ -52,7 +66,19 @@ export default React.createClass({
       return 0;
     });
 
+    var state = this.state;
+    if(this.state.searchedBy != null){
+      storedCards = storedCards.filter(function(card){
+        var inTitle = card.title.indexOf(state.searchedBy) > -1;
+        var inBack = card.back.indexOf(state.searchedBy) > -1;
+        var inFront = card.front.indexOf(state.searchedBy) > -1;
+        return inTitle || inBack || inFront;
+      });
+    }
+
+
     storedCards.forEach(function(card){
+      var shouldBeAdded = true;
       cards.push(
         <div className="col s12 m3">
           <div className="card-panel hoverable">
@@ -69,6 +95,11 @@ export default React.createClass({
         <h1>{deck.title}</h1>
         <CardForm deckId={deckId} size={deck.card_size} mode="new"/>
         <h5>Your cards</h5>
+          <div className="input-field col s6">
+            <i className="material-icons prefix" onClick={this.onSearchChange}>search</i>
+            <input id="icon_prefix" type="text"/>
+            <label for="icon_prefix">Search</label>
+          </div>
         <div className="row">{cards}</div>
       </div>);
   }
