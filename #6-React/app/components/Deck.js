@@ -42,10 +42,21 @@ export default React.createClass({
     var deckId = this.props.params.deckId;
     var deck = DeckStore.getItem(deckId);
     var cards=[];
-    CardStore.getItems(deckId).forEach(function(card){
+
+    var storedCards = CardStore.getItems(deckId);
+    storedCards.sort(function(a, b){
+      if (a.position < b.position)
+        return -1;
+      if (a.position > b.position)
+        return 1;
+      return 0;
+    });
+
+    storedCards.forEach(function(card){
       cards.push(
         <div className="col s12 m3">
           <div className="card-panel hoverable">
+            #{card.position} -&nbsp;
             <Link to={`/cards/${card.id}`}>
               {card.title}
             </Link>
