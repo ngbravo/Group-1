@@ -35,16 +35,52 @@ export default React.createClass({
       }
     });
   },
+  updateItem: function(e){
+    var card = CardStore.getItem(this.props.params.cardId);
+
+    card.title = ReactDOM.findDOMNode(this.refs.item_title).value;
+    card.front = ReactDOM.findDOMNode(this.refs.front_content).value;
+    card.back = ReactDOM.findDOMNode(this.refs.back_content).value;
+    card.image = ReactDOM.findDOMNode(this.refs.image_file).value;
+
+    AppDispatcher.dispatch({
+      action: 'edit-card',
+      new_item: card
+    });
+  },
 
   render: function(){
-    return <form onSubmit={ this.createItem }>
-        <h5>Add a card</h5>
-        <input type="text" ref="item_title" placeholder="Card Title"/>
-        <input type="text" ref="front_content" placeholder="Front Side Content"/>
-        <input type="text" ref="back_content" placeholder="Back Side Content"/>
-        <input type="text" ref="image_file" placeholder="(Optional) Image URL"/>
 
-        <button className="waves-effect waves-light btn">Add new card</button>
-      </form>;
+    if (this.props.mode != undefined) {
+      if (this.props.mode == "new") {
+        return(
+          <form onSubmit={this.createItem}>
+            <h5>Add a card</h5>
+            <input type="text" ref="item_title" placeholder="Card Title"/>
+            <input type="text" ref="front_content" placeholder="Front Side Content"/>
+            <input type="text" ref="back_content" placeholder="Back Side Content"/>
+            <input type="text" ref="image_file" placeholder="(Optional) Image URL"/>
+            <button className="waves-effect waves-light btn">Add new card</button>
+          </form>
+        );
+      }
+    }
+    else {
+      var card = CardStore.getItem(this.props.params.cardId);
+      return(
+        <form onSubmit={this.updateItem}>
+          <h5>Update card</h5>
+          <input type="text" ref="item_title" placeholder="Card Title" defaultValue={card.title}/>
+          <input type="text" ref="front_content" placeholder="Front Side Content" defaultValue={card.front}/>
+          <input type="text" ref="back_content" placeholder="Back Side Content" defaultValue={card.back}/>
+          <input type="text" ref="image_file" placeholder="(Optional) Image URL" defaultValue={card.image}/>
+          <button className="waves-effect waves-light btn">Update</button>
+          <br/>
+          <a href={`#/cards/${card.id}`}>Back</a>
+        </form>
+      );
+    }
+
+
   }
 });

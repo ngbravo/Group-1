@@ -40,6 +40,12 @@ AppDispatcher.register((payload) => {
       CardStore.emitChange();
       break;
 
+    case 'edit-card':
+      CardStore.updateItem(new_item);
+      // If action was responded to, emit change event
+      CardStore.emitChange();
+      break;
+
     default:
       return true;
   }

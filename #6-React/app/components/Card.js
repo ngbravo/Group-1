@@ -1,20 +1,10 @@
 import React from "react";
+import { Router, Route, Link } from "react-router"
 import CardSide from "./CardSide";
 import CardStore from "../stores/CardStore";
 
-var CARD_REVERSE1 = {content:"hola2"};
-var CARD_FRONT1 = {content:"hola"};
-
-
-var CARD = {title: "Titulo1", front:CARD_FRONT1, reverse:CARD_REVERSE1, size: "medium", id:1};
 
 export default React.createClass({
-  getInitialState: function() {
-      return { showReverse: false };
-  },
-  onClick: function() {
-      this.setState({ showReverse: !this.state.showReverse });
-  },
   render: function(){
     var card = CardStore.getItem(this.props.params.cardId);
     console.log(card);
@@ -35,7 +25,7 @@ export default React.createClass({
               </div>
               <div className="card-action">
                 <a className="activator">View reverse</a>
-                <a href="#">Edit</a>
+                  <Link to={`/cards/${card.id}/edit`}>Edit</Link>
                 <a key={card.deckId} href={`#/decks/${card.deckId}`} className="right">Close</a>
               </div>
             </div>

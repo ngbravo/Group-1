@@ -57,6 +57,16 @@ export default _.extend({}, EventEmitter.prototype, {
     this.items = items;
     localStorage.setItem('cards', JSON.stringify(this.items));
   },
+  updateItem: function(update_item){
+    console.log(update_item);
+
+    for (var i = 0; i < this.items.length; i++) {
+      if(this.items[i].id == update_item.id){
+        this.items[i] = update_item;
+      }
+    }
+    localStorage.setItem('cards', JSON.stringify(this.items));
+  },
 
   // Emit Change event
   emitChange: function(){
