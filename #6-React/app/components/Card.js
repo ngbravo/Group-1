@@ -5,6 +5,22 @@ import CardStore from "../stores/CardStore";
 
 
 export default React.createClass({
+
+  exportPdf: function(){
+    var card = CardStore.getItem(this.props.params.cardId);
+    var doc = new jsPDF();
+    doc.setFontSize(30);
+    doc.text(20,20, card.title);
+    doc.setFontSize(20);
+    doc.text(20,40, card.front);
+    doc.addPage();
+    doc.setFontSize(30);
+    doc.text(20,20, card.title + ' - Reverse');
+    doc.setFontSize(20);
+    doc.text(20,40, card.back);
+    doc.save(card.title + '.pdf');
+  },
+
   render: function(){
     var card = CardStore.getItem(this.props.params.cardId);
     var size = "card " + card.size;
@@ -24,6 +40,7 @@ export default React.createClass({
               </div>
               <div className="card-action">
                 <a className="activator">View reverse</a>
+                <a onClick={this.exportPdf}>Export PDF</a>
                 <Link to={`/cards/${card.id}/edit`}>Edit</Link>
                 <a key={card.deckId} href={`#/decks/${card.deckId}`} className="right">Close</a>
               </div>
