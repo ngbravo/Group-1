@@ -78,7 +78,6 @@ export default React.createClass({
 
 
     storedCards.forEach(function(card){
-      var shouldBeAdded = true;
       cards.push(
         <div className="col s12 m3">
           <div className="card-panel hoverable">
