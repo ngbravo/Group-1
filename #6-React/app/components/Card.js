@@ -24,7 +24,7 @@ export default React.createClass({
               </div>
               <div className="card-action">
                 <a className="activator">View reverse</a>
-                  <Link to={`/cards/${card.id}/edit`}>Edit</Link>
+                <Link to={`/cards/${card.id}/edit`}>Edit</Link>
                 <a key={card.deckId} href={`#/decks/${card.deckId}`} className="right">Close</a>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default React.createClass({
                </div>
                <div className="card-action">
                  <a className="activator">View reverse</a>
-                 <a href="#">Edit</a>
+                   <Link to={`/cards/${card.id}/edit`}>Edit</Link>
                  <a key={card.deckId} href={`#/decks/${card.deckId}`} className="right">Close</a>
                </div>
              </div>
