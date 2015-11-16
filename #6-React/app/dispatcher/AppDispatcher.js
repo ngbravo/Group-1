@@ -41,6 +41,7 @@ AppDispatcher.register((payload) => {
       break;
 
     case 'edit-card':
+      console.log(new_item);
       CardStore.updateItem(new_item);
       // If action was responded to, emit change event
       CardStore.emitChange();

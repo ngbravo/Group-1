@@ -7,7 +7,6 @@ import CardStore from "../stores/CardStore";
 export default React.createClass({
   render: function(){
     var card = CardStore.getItem(this.props.params.cardId);
-    console.log(card);
     var size = "card " + card.size;
 
     if(card.image == ""){

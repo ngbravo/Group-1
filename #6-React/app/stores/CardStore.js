@@ -38,8 +38,16 @@ export default _.extend({}, EventEmitter.prototype, {
   },
 
   // Add item
-  addItem: function(new_item){
+  addItem: function(new_item)   {
+
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].position >= new_item.position) {
+        this.items[i].position ++;
+      }
+    }
+
     this.items.push(new_item);
+
     localStorage.setItem('cards', JSON.stringify(this.items));
   },
 
@@ -47,6 +55,13 @@ export default _.extend({}, EventEmitter.prototype, {
   removeItem: function(item_id){
 
     //TODO recursive removal
+    var card = this.getItem(item_id);
+
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].position > card.position) {
+        this.items[i].position --;
+      }
+    }
 
     let items = this.items;
 
@@ -58,14 +73,8 @@ export default _.extend({}, EventEmitter.prototype, {
     localStorage.setItem('cards', JSON.stringify(this.items));
   },
   updateItem: function(update_item){
-    console.log(update_item);
-
-    for (var i = 0; i < this.items.length; i++) {
-      if(this.items[i].id == update_item.id){
-        this.items[i] = update_item;
-      }
-    }
-    localStorage.setItem('cards', JSON.stringify(this.items));
+    this.removeItem(update_item.id);
+    this.addItem(update_item);
   },
 
   // Emit Change event
