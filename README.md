@@ -7,5 +7,6 @@ Grupo 1: Guillermo Valenzuela (@gevalenz) y Nikolas Bravo (@ngbravo)
 * [tarea 4](https://docs.google.com/presentation/d/1nSZ18BSqSbz4D3dXhdBHJ31JwQUJNE_dWD1iSJjcKtA/edit?usp=sharing)
 * [tarea 5](https://docs.google.com/presentation/d/1pnlAR6a1eTF-v9wHAbnDxs4GGjmCVRz-CnLgHLQVmhY/edit?usp=sharing)
 * [tarea 6](https://docs.google.com/presentation/d/11itQmG1kRVhXDMia2t1xcJK3ULrxmEx5o5WfHEssP4s/edit?usp=sharing)
-##Observaciones:
+
+## Observaciones:
 * Tarea 5: ejecutar servidor con `python -m SimpleHTTPServer`
